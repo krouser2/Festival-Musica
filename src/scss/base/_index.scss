@@ -1,0 +1,9 @@
+/*El forward se usa para pasar todos los estilos del archivo 
+si y solo si no accedes a alguna propiedad del archivo.
+*/
+@forward 'normalize' ;
+@forward 'variables';
+@forward 'mixins';
+@forward 'globales';
+
+
