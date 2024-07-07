@@ -3,6 +3,7 @@
 
 .header{
     background-color: v.$verde;
+    
 }
 
 .contenido-header{
@@ -12,6 +13,20 @@
     align-items: center;
     padding: 2rem;
     gap: 3rem;
+    background-color: v.$verde;
+    @include m.desktop{
+        &.fixed{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            gap :30rem;
+        }
+    }
+    
 
     h1{
         font-size: 2.4rem;
