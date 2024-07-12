@@ -23,25 +23,41 @@ function crearGaleria() {
     const galeria = document.querySelector('.galeria-imagenes');
 
     for (let i = 1; i <= CANTIDAD_IMAGENES; i++) {
+        const picture = document.createElement('PICTURE')
+        const imagenWebp = document.createElement('SOURCE');
+        imagenWebp.srcset = `build/img/gallery/thumb/${i}.webp`;
+        const imagenAvif = document.createElement('SOURCE');
+        imagenAvif.srcset = `build/img/gallery/thumb/${i}.avif`;
         const imagen = document.createElement('IMG');
         imagen.loading = 'lazy';
         imagen.width = "300";
         imagen.height = "200";
-        imagen.src = `src/img/gallery/full/${i}.jpg`;
+        imagen.src = `build/img/gallery/thumb/${i}.jpg`;
         imagen.alt = 'Imagen de galeria';
 
         imagen.onclick = function () {
             mostrarImagen(i);
         }
-        galeria.appendChild(imagen);
+        picture.appendChild(imagenAvif);
+        picture.appendChild(imagenWebp);
+        picture.appendChild(imagen);
+        galeria.appendChild(picture);
     }
 }
 
 function mostrarImagen(indice) {
     //agregar la imagen al modal
+    const picture = document.createElement('PICTURE')
+    const imagenWebp = document.createElement('SOURCE');
+    imagenWebp.srcset = `build/img/gallery/full/${indice}.webp`;
+    const imagenAvif = document.createElement('SOURCE');
+    imagenAvif.srcset = `build/img/gallery/full/${indice}.avif`;
     const imagen = document.createElement('IMG');
-    imagen.src = `src/img/gallery/full/${indice}.jpg`;
+    imagen.src = `build/img/gallery/full/${indice}.jpg`;
     imagen.alt = 'Imagen de galeria';
+    picture.appendChild(imagenAvif);
+    picture.appendChild(imagenWebp);
+    picture.appendChild(imagen);
     //Generar Modal
     const modal = document.createElement('DIV');
     modal.classList.add('modal');
@@ -54,7 +70,7 @@ function mostrarImagen(indice) {
     btnClose.onclick = cerrarModal;
 
 
-    modal.appendChild(imagen);
+    modal.appendChild(picture);
     modal.appendChild(btnClose);
     //Agregar al html 
     const body = document.querySelector('body');
@@ -75,3 +91,5 @@ function cerrarModal() {
     }, 500);
 
 }
+
+//Sharp genera imagenes webp
